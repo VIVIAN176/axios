@@ -70,3 +70,14 @@ var instance = axios.create({
     timeout: 1000,
     headers: { 'X-Custom-Header': 'foobar' }
 })
+
+//Response
+axios.get('/user/12345')
+    .then(function (response) {
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+    })
+
