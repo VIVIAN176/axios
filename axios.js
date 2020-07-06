@@ -62,3 +62,11 @@ axios.all([getUserAccount(), getUserPermissions()])
     .then(axios.spread(function (acct, perms) {
         //当两个请求都完成时
     }))
+
+
+//创建实例
+var instance = axios.create({
+    baseURl: 'https:xxxxx/api/',
+    timeout: 1000,
+    headers: { 'X-Custom-Header': 'foobar' }
+})
