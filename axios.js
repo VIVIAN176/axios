@@ -81,3 +81,19 @@ axios.get('/user/12345')
         console.log(response.config);
     })
 
+//Config
+axios.defaults.baseURl = '/xxx';
+axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+var instance = axios.create({
+    baseURl: 'https://xxx'
+})
+
+instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+
+var instance = axios.create();
+instance.defaults.timeout = 2500;
+instance.get('/longRequest', {
+    timeout: 5000
+})
