@@ -128,8 +128,25 @@ var instance = axios.create();
 instance.interceptors.request.use(() => { })
 
 
-
-
+//错误处理
+axios.get('/user/1234')
+    .catch(function (error) {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        } else if (error.request) {
+            console.log(error.request)
+        } else {
+            console.log('Error', error.message)
+        }
+        console.log(error.config)
+    })
+axios.get('/user/1235', {
+    validateStatus: function (status) {
+        return status < 500
+    }
+})
 
 
 
