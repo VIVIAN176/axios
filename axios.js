@@ -49,3 +49,16 @@ axios({
         lastname: 'zhang'
     }
 })
+
+//并行请求
+function getUserAccount() {
+    return axios.get('/user/123')
+}
+
+function getUserPermissions() {
+    return axios.get('/user/1243/permissions')
+}
+axios.all([getUserAccount(), getUserPermissions()])
+    .then(axios.spread(function (acct, perms) {
+        //当两个请求都完成时
+    }))
