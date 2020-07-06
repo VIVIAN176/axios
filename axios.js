@@ -97,3 +97,42 @@ instance.defaults.timeout = 2500;
 instance.get('/longRequest', {
     timeout: 5000
 })
+
+//拦截器
+//request interceptors
+axios.interceptors.request.use(
+    function (config) {
+        return config;
+    },
+    function (error) {
+        return Promise.reject(error)
+    })
+
+//response interceptors
+axios.interceptors.response.use(
+    function (response) {
+        return response
+    },
+    function (error) {
+        return Promise.reject(error)
+    }
+)
+
+//remove interceptor
+var myInterceptors = axios.interceptors.request.use(
+    function () {/*...*/ }
+);
+axios.interceptors.request.eject(myInterceptor);
+
+var instance = axios.create();
+instance.interceptors.request.use(() => { })
+
+
+
+
+
+
+
+
+
+
