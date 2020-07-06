@@ -177,9 +177,9 @@ var CancelToken = axios.CancelToken;
 var cancel;
 
 axios.get('/user/12345', {
-    cancelToken: new CancelToken(function executor(c) {
+    cancelToken: new CancelToken(function executor(cc) {
         // An executor function receives a cancel function as a parameter
-        cancel = c;
+        cancel = cc;
     })
 });
 
