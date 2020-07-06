@@ -148,6 +148,43 @@ axios.get('/user/1235', {
     }
 })
 
+//取消请求
+var CancelToken = axios.CancelToken;
+vat source = CancelToken.source();
+
+axios.get('/user/12345', {
+    cancelToken: source.token
+}).catch(function (thrown) {
+    if (axios.isCancel(thrown)) {
+        console.log('Request canceled', thrown.message);
+    } else {
+        // handle error
+    }
+});
+
+axios.post('/user/12345', {
+    name: 'new name'
+}, {
+    cancelToken: source.token
+})
+
+// cancel the request (the message parameter is optional)
+source.cancel('Operation canceled by the user.');
+
+// Create cancel token
+
+var CancelToken = axios.CancelToken;
+var cancel;
+
+axios.get('/user/12345', {
+    cancelToken: new CancelToken(function executor(c) {
+        // An executor function receives a cancel function as a parameter
+        cancel = c;
+    })
+});
+
+// cancel the request
+
 
 
 
